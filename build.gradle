@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'jwee.study'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+description = 'study for junit unit test'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.2'
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+}
+
+test {
+    useJUnitPlatform()
+}
