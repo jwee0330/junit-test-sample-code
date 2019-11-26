@@ -2,6 +2,7 @@ package junit;
 
 
 import org.assertj.core.api.Assertions;
+import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,5 +33,18 @@ class ScoreCollectionTest {
                 .isEqualTo(25);
     }
 
+    @Test
+    void getDifferenceOfTwoDouble() {
+        assertThat(2.32 * 3).isEqualTo(6.96);
+    }
 
+    @Test
+    void getDifferenceOfFloatPointDecimal() {
+        assertThat(2.32 * 3 - 6.96 < 0.0005).isTrue();
+    }
+
+    @Test
+    void isEqualTwoDoubleCloseToOffset() {
+        assertThat(2.32 * 3).isCloseTo(6.96, Offset.offset(0.0005));
+    }
 }

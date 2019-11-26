@@ -23,3 +23,31 @@ JUnit 햄크레시트 매처를 이용하면 다음 일을 할 수 있다.
 참조 -   
 [햄크레스트 API 문서](https://goo.gl/g5W4xi)  
 [구글 튜토리얼](https://goo.gl/g5W4xi)
+
+--------------
+
+#### 예외를 기대하는 세 가지 방법
+
+* 단순한 방식: 애너테이션 사용
+    * @Test(expected=IllegalArgumentException.class)
+* 옛 방식: try/catch 와 fail
+    * try {  
+        account.withdraw(100);  
+        fail();  
+      }   
+      catch (InsufficientFundsException expected) {  
+        assertThat(expected.getMessage()).isEqualTo("balance only 0");    
+      }
+      
+* 새로운 방식: ExpectedException 규칙
+    * @Rule  
+      public ExpectedException thrown = ExpectedException.none();
+      
+* [Fishbowl 방식](https://github.com/stefanbirkner/fishbowl)
+
+* [JUnit5 expected exception - assertThrows() example](https://howtodoinjava.com/junit5/expected-exception-example/)
+-------------------------
+
+일부러 검증된 예외를 처리하려고 테스트 코드에 try/catch 블록을 넣지 말기!
+그 대신 발생하는 예외를 다시 던지기!  
+해피패스로 코드를 작성해서 테스트하기!
